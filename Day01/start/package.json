@@ -1,0 +1,16 @@
+{
+  "name": "happy",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^6.0.1",
+    "pokemon": "^3.3.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "mdp",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "ohchansik": "node index.js",
+    "ohjaehee": "node alpha.js"
+  },
+  "dependencies": {
+    "pokemon": "^3.3.1",
+    "superheroes": "^4.0.0"
+  }
+}
