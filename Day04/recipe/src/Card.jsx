@@ -4,19 +4,27 @@ import Difficulty from "./Difficulty";
 import Rating from "./Rating";
 import ReviewCount from "./ReviewCount";
 
-const Card = () => {
+const Card = (props) => {
   return (
-    <aritcle style={{ display: "flex", flexDirection: "column" }}>
-      <div>
-        <Image />
+    <article
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        padding: "2px",
+        border: "1px solid red",
+        borderRadius: "12px",
+      }}
+    >
+      <div style={{ flex: "1", borderBottom: "1px solid black" }}>
+        <Image image={props.image} />
       </div>
-      <div>
-        <Name />
-        <Rating rating={4.6} />
-        <ReviewCount reviewCount={100} />
-        <Difficulty difficulty={"Easy"} />
+      <div style={{ flex: "1" }}>
+        <Name name={props.name} />
+        <Rating rating={props.rating} />
+        <ReviewCount reviewCount={props.reviewCount} />
+        <Difficulty difficulty={props.difficulty} />
       </div>
-    </aritcle>
+    </article>
   );
 };
 

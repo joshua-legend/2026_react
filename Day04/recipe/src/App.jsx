@@ -1,12 +1,15 @@
+import Card from "./Card.jsx";
+import { DUMMY_DATA } from "./data.js";
+
 function App() {
+  const { recipes } = DUMMY_DATA;
+
   return (
-    <>
-      <ReviewCount reviewCount={100} />
-      <Rating rating={4.3} />
-      <Rating rating={4.6} />
-      <Difficulty difficulty={"Easy"} />
-      <Difficulty difficulty={"Hard"} />
-    </>
+    <section style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)" }}>
+      {recipes.map((v) => (
+        <Card {...v} />
+      ))}
+    </section>
   );
 }
 
