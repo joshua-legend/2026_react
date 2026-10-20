@@ -1,41 +1,52 @@
 import { useState } from "react";
-import EmailField from "./molecules/EmailField";
-import PasswordCheckField from "./molecules/PasswordCheckField";
-import PasswordField from "./molecules/PasswordField";
-import Field from "./molecules/Field";
+import AllChecker from "./molecules/AllChecker";
+import Checker from "./molecules/Checker";
+import FieldList from "./organism/FieldList";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [checkList, setCheckList] = useState([false, false, false]);
+
   return (
     <>
-      <Field
-        title={"이메일"}
-        warnTitle={"@가 빠졌어요."}
-        type={"email"}
-        cond={!email.includes("@")}
-        func={(e) => {
-          setEmail((prev) => e.target.value);
+      {/* <FieldList /> */}
+      <AllChecker
+        func={() => {
+          setCheckList((prev) => {
+            const isAllChecked = prev.every((v) => v);
+            return isAllChecked ? [false, false, false] : [true, true, true];
+          });
         }}
+        isChecked={checkList.every((v) => v)}
       />
-      <Field
-        title={"비밀번호"}
-        warnTitle={"8글자 이상어야해요."}
-        type={"password"}
-        cond={password.length < 8}
+      <Checker
+        checked={checkList[0]}
         func={(e) => {
-          setPassword((prev) => e.target.value);
+          setCheckList((prev) =>
+            prev.map((v, i) => (i == 0 ? e.target.checked : v)),
+          );
         }}
+        isNecessary={true}
+        text={"이용 약관 동의"}
       />
-      <Field
-        title={"비밀번호 확인"}
-        warnTitle={"비밀번호가 다릅니다."}
-        type={"password"}
-        cond={password != passwordCheck}
+      <Checker
+        checked={checkList[1]}
         func={(e) => {
-          setPasswordCheck((prev) => e.target.value);
+          setCheckList((prev) =>
+            prev.map((v, i) => (i == 1 ? e.target.checked : v)),
+          );
         }}
+        isNecessary={true}
+        text={"개인 정보 수집 이용 동의"}
+      />
+      <Checker
+        checked={checkList[2]}
+        func={(e) => {
+          setCheckList((prev) =>
+            prev.map((v, i) => (i == 2 ? e.target.checked : v)),
+          );
+        }}
+        isNecessary={false}
+        text={"마케팅 수신 동의"}
       />
     </>
   );
