@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+/* 타입 */
+/* 
+- 기본: number,string,boolean,undefined,null
+- 참조: object, array, function, ...
+*/
+
 const Coupang = () => {
   const [items, setItems] = useState({
     catCount: 0,
@@ -10,19 +16,19 @@ const Coupang = () => {
     tissuePrice: 2200,
   });
 
-  const up = (x) => {
+  const up = (key) => {
     setItems((prev) => {
-      const key = Object.keys(prev).find((v) => v == x);
-      prev[key] = prev[key] + 1;
+      const target = Object.keys(prev).find((v) => v == key);
+      prev[target] = prev[target] + 1;
       return { ...prev };
     });
   };
 
-  const down = (x) => {
+  const down = (key) => {
     setItems((prev) => {
-      const key = Object.keys(prev).find((v) => v == x);
-      prev[key] = prev[key] == 0 ? 0 : prev[key] - 1;
-      return prev;
+      const target = Object.keys(prev).find((v) => v == key);
+      prev[target] = prev[target] == 0 ? 0 : prev[target] - 1;
+      return { ...prev };
     });
   };
 
@@ -32,7 +38,7 @@ const Coupang = () => {
         <span>고양이 사료 {items.catPrice}원</span>
         <button
           onClick={() => {
-            down("catCount");
+            down("catDown");
           }}
         >
           -
@@ -90,7 +96,8 @@ const Coupang = () => {
         총 금액:
         {items.catCount * items.catPrice +
           items.waterCount * items.waterPrice +
-          items.tissueCount * items.tissuePrice}
+          items.tissueCount +
+          items.tissuePrice}
       </div>
     </div>
   );
